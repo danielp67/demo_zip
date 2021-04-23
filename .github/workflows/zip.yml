@@ -7,7 +7,7 @@ jobs:
     steps:
 
       - name: Install Ionic
-        run: npm install -g @ionic/cli
+        run: npm install @ionic/cli
 
       - name: Install app dependencies
         run: npm install
