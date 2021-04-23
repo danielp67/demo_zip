@@ -31,16 +31,24 @@ jobs:
       - name: Build
         run: ionic build
 
-      - name: Add Android platform
+      - name: Add Android and IOs platform
         run: |
           npm install @capacitor/android
+          npm install @capacitor/ios
           npx cap add android
+          npx cap add ios
 
-      - name: Upload dev APK
+      - name: Upload Android folder
         uses: actions/upload-artifact@v1
         with:
-          name: app-dev
+          name: android-artifact
           path: android/
+
+      - name: Upload IOs folder
+        uses: actions/upload-artifact@v1
+        with:
+          name: ios-artifact
+          path: ios/
 
 #      - name: Generate the Android App Bundle
 #        working-directory: ./android/
