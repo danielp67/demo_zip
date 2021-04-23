@@ -43,7 +43,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: android-artifact
-          tag: "latest43"
+          tag: "latest53"
           token: ${{ secrets.GITHUB_TOKEN }}
 
 #
