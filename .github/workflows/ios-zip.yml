@@ -1,0 +1,46 @@
+name: Create Release
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+
+      - name: Checkout source
+        uses: actions/checkout@v1
+
+#      - name: Set Xcode Version
+#        run: sudo xcode-select -s /Applications/Xcode_11.app
+
+      - name: Setup ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6' # Version range or exact version of a Ruby version to use, using semvers version range syntax.
+
+      - name: Install Cocoapods
+        run: sudo gem install cocoapods
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install Ionic
+        run: npm install -g @ionic/cli
+
+      - name: Install app dependencies
+        run: npm install --force
+
+      - name: Build
+        run: ionic build
+
+      - name: Add Android and ios platform
+        run: |
+          npx cap add ios
+          npx cap update ios
+
+      - name: Upload ios folder
+        uses: actions/upload-artifact@v1
+        with:
+          name: ios-artifact
+          path: ios/
