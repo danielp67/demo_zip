@@ -22,9 +22,6 @@ jobs:
       - name: Install Ionic
         run: npm install -g @ionic/cli
 
-      - name: Install Capacitor
-        run: npm install -g @capacitor/core @capacitor/cli
-
       - name: Install app dependencies
         run: npm install --force
 
@@ -33,8 +30,6 @@ jobs:
 
       - name: Add Android and ios platform
         run: |
-          npm install @capacitor/android
-          npm install @capacitor/ios
           npx cap add android
           npx cap add ios
 
@@ -43,6 +38,14 @@ jobs:
         with:
           name: android-artifact
           path: android/
+
+      - name: Upload Android Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "android-artifact"
+          tag: "latest-2"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: Upload ios folder
         uses: actions/upload-artifact@v1
@@ -58,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: app-dev
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          path: android/app/
 
 
 #      - uses: actions/checkout@master
@@ -69,9 +72,4 @@ jobs:
 #          filename: 'release.zip'
 #          exclusions: '*.git* /*node_modules/* .editorconfig'
 #
-      - name: Upload Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "android-artifact"
-          tag: "latest-2"
-          token: ${{ secrets.GITHUB_TOKEN }}
+
