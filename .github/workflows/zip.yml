@@ -26,15 +26,19 @@ jobs:
         run: npm install -g @capacitor/core @capacitor/cli
 
       - name: Install app dependencies
-        run: npm install
+        run: npm install --force
 
       - name: Build
-        run: npm run build
+        run: ionic build
 
       - name: Add Android platform
-        run: ionic cap add android
+        run: |
+          npm install @capacitor/android
+          npx cap add android
 
-
+      - name: Generate the Android App Bundle
+        working-directory: ./android/
+        run: ./gradlew bundle
 
 #      - uses: actions/checkout@master
 #      - name: Archive Release
