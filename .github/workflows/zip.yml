@@ -42,26 +42,29 @@ jobs:
       - name: Upload Android Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "android-artifact"
-          tag: "latest23"
+          artifacts: android-artifact
+          tag: "latest43"
           token: ${{ secrets.GITHUB_TOKEN }}
 
-
-      - name: Upload ios folder
-        uses: actions/upload-artifact@v1
-        with:
-          name: ios-artifact
-          path: ios/
+#
+#      - name: Upload ios folder
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: ios-artifact
+#          path: ios/
 
       - name: Generate the Android App Bundle
         working-directory: ./android/
-        run: ./gradlew bundle
+        run: |
+          ./gradlew bundle
+          ./gradlew assembleDebug
+          ./gradlew installDebug
 
       - name: Upload dev APK
         uses: actions/upload-artifact@v1
         with:
           name: app-dev
-          path: android/app/
+          path: android/app/build/outputs/
 
 
 #      - uses: actions/checkout@master
