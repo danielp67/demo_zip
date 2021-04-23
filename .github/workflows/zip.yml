@@ -39,12 +39,11 @@ jobs:
           name: android-artifact
           path: android/
 
-      - name: Upload Android Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: android-artifact
-          tag: "latest53"
-          token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Upload Android Release
+#        uses: actions/upload-artifact@v2
+#        with:
+#          tag: "latest453"
+#          token: ${{ secrets.GITHUB_TOKEN }}
 
 #
 #      - name: Upload ios folder
@@ -58,7 +57,6 @@ jobs:
         run: |
           ./gradlew bundle
           ./gradlew assembleDebug
-          ./gradlew installDebug
 
       - name: Upload dev APK
         uses: actions/upload-artifact@v1
