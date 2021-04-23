@@ -5,10 +5,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
+      - name: Install Ionic
+        run: npm install -g @ionic/cli
+
+      - name: Install app dependencies
+        run: npm install
+
+      - name: Add Android platform
+        run: ionic cap add android
+
+
+
       - uses: actions/checkout@master
       - name: Archive Release
         uses: thedoctor0/zip-release@master
         with:
+          path: './android'
+          directory: './android'
           filename: 'release.zip'
           exclusions: '*.git* /*node_modules/* .editorconfig'
 
