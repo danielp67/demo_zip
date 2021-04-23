@@ -23,7 +23,7 @@ jobs:
         run: npm install -g @ionic/cli
 
       - name: Install Ionic
-        run: npm install @capacitor/core @capacitor/cli
+        run: npm install -g @capacitor/core @capacitor/cli
 
       - name: Install app dependencies
         run: npm install
@@ -36,17 +36,17 @@ jobs:
 
 
 
-      - uses: actions/checkout@master
-      - name: Archive Release
-        uses: thedoctor0/zip-release@master
-        with:
-
-          filename: 'release.zip'
-          exclusions: '*.git* /*node_modules/* .editorconfig'
-
-      - name: Upload Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "release.zip"
-          tag: "latest-2"
-          token: ${{ secrets.GITHUB_TOKEN }}
+#      - uses: actions/checkout@master
+#      - name: Archive Release
+#        uses: thedoctor0/zip-release@master
+#        with:
+#
+#          filename: 'release.zip'
+#          exclusions: '*.git* /*node_modules/* .editorconfig'
+#
+#      - name: Upload Release
+#        uses: ncipollo/release-action@v1
+#        with:
+#          artifacts: "release.zip"
+#          tag: "latest-2"
+#          token: ${{ secrets.GITHUB_TOKEN }}
