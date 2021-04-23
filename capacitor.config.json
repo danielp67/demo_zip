@@ -1,0 +1,14 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "bakery-manager-app",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "windowsAndroidStudioPath": "C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2020.3.2\\bin\\idea64.exe"
+}
